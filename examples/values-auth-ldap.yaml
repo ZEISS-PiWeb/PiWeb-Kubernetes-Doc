@@ -1,0 +1,14 @@
+serverConfig:
+  authentication:
+    userAdministration: ldap
+    authentication: oidc
+    oidc:
+      externalAuthority: "https://oidc.example.com"
+    ldap:
+      hostname: ldap-or-dc.example.com
+      username: ldapaccessuser
+      password: ldapaccesspassword
+      baseDN: DC=example,DC=com
+      userFilter: "(&(objectClass=user)(memberof:1.2.840.113556.1.4.1941:=CN=PiWebAccess,OU=Groups,DC=example,DC=com))"
+keycloak:
+  enabled: false

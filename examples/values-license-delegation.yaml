@@ -1,0 +1,22 @@
+# Config for the PiWeb Server that delegates license management
+serverConfig:
+  licensing:
+    # We do not need to deploy the licensing server kubernetes job
+    enabled: false
+    delegation:
+      enabled: true
+      isAlternativeLicenseServer: false
+      hasAlternativeLicenseServer: true
+      serverUrl: "https://piweb-main.example.com"
+      cidr: <ip_address_of_piweb-main.example.com>/32
+      password: "LicenseServerPassword"
+
+# Config for the main PiWeb Server that manages the licenses
+serverConfig:
+  licensing:
+    enabled: true
+    delegation:
+      enabled: false
+      isAlternativeLicenseServer: true
+      hasAlternativeLicenseServer: false
+      password: "LicenseServerPassword"

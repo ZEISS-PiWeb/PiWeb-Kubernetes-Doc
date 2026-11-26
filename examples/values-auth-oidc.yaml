@@ -1,0 +1,6 @@
+serverConfig:
+  authentication:
+    userAdministration: builtIn
+    authentication: oidc
+    oidc:
+      externalAuthority: "https://keycloak-piweb.example.com/realms/piweb"

@@ -1,0 +1,8 @@
+# *Prerequisite*: The QDB file must not exceed 1 MB
+# Create a ConfigMap with your QDB file first:
+# kubectl create configmap qdb-import-config --from-file=Configuration.qdb="C:\path\to\Configuration.qdb" -n piweb
+serverConfig:
+  qdbImport:
+    enabled: true
+    configMapName: qdb-import-config
+    fileName: Configuration.qdb

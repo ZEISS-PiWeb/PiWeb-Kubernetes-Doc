@@ -1,0 +1,4 @@
+serverConfig:
+  authentication:
+    userAdministration: builtIn
+    authentication: basic

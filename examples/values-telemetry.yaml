@@ -1,0 +1,7 @@
+serverConfig:
+  telemetry:
+    log4net:
+      enabled: false
+    otel:
+      enabled: true
+      endpoint: "http://otel-collector.svc.cluster.local:4317/"

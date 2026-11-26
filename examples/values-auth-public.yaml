@@ -1,0 +1,4 @@
+serverConfig:
+  authentication:
+    userAdministration: public
+    authentication: none
