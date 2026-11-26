@@ -1,0 +1,6 @@
+serverConfig:
+  trustedCaCertificates:
+    - |
+      -----BEGIN CERTIFICATE-----
+      (your corporate root CA)
+      -----END CERTIFICATE-----

@@ -1,0 +1,4 @@
+serverConfig:
+  features:
+    reportExtensions:
+      enabled: true

@@ -1,0 +1,56 @@
+# host PiWeb Server on 'piweb.example.com/piweb-server' and PiWeb licensing server on 'piweb.example.com/piweb-server-licensing'.
+global:
+  domainName: piweb.example.com
+
+gatewayAPI:
+  serverHttpRoute:
+    hostnames:
+      - "{{ .Values.global.domainName }}"
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /piweb-server
+        filters:
+          - type: URLRewrite
+            urlRewrite:
+              path:
+                type: ReplacePrefixMatch
+                replacePrefixMatch: /
+          - type: RequestHeaderModifier
+            requestHeaderModifier:
+              set:
+                - name: X-Forwarded-Prefix
+                  value: /piweb-server
+                - name: X-Forwarded-Proto
+                  value: https
+  licensingHttpRoute:
+    hostnames:
+      - "{{ .Values.global.domainName }}"
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /piweb-server-licensing
+        filters:
+          - type: URLRewrite
+            urlRewrite:
+              path:
+                type: ReplacePrefixMatch
+                replacePrefixMatch: /
+          - type: RequestHeaderModifier
+            requestHeaderModifier:
+              set:
+                - name: X-Forwarded-Prefix
+                  value: /piweb-server-licensing
+                - name: X-Forwarded-Proto
+                  value: https
+serverConfig:
+  advanced:
+    inboundProxy:
+      enabled: true
+      forwardedHeaders: "All"
+      # Allow all proxy servers, not recommended for production
+      # For example, to determine the IP address of a traefik POD within the traefik namespace, run the following command:
+      # kubectl -n traefik get pods -o custom-columns=POD:.metadata.name,NODE:.spec.nodeName,IP:.status.podIP
+      knownProxies: "::/0,0.0.0.0/0"

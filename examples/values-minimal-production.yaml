@@ -1,0 +1,34 @@
+global:
+  domainName: piweb.example.com
+
+serverConfig:
+  database:
+    host: mssql
+    cidr: <ip_address_mssql_host>/32
+    name: piweb
+    username: <db_user_piweb>
+    password: <db_password_piweb>
+  email:
+    serverName: <smtp_hostname>
+    cidr: <ip_address_smtp_host>/32
+    serverPort: 587
+    enableSsl: true
+    username: <smtp_user>
+    password: <smtp_password>
+    emailSender: <smtp_sender@example.com>
+
+keycloak:
+  dbusername: <db_user_keycloak>
+  dbpassword: <db_password_keycloak>
+  database:
+    host: mssql
+    cidr: <ip_address_mssql_host>/32
+    name: keycloak
+  realm:
+    smtp:
+      serverName: <smtp_hostname>
+      cidr: <ip_address_smtp_host>/32
+      serverPort: 587
+      username: <smtp_user>
+      password: <smtp_password>
+      emailSender: <smtp_sender@example.com>
